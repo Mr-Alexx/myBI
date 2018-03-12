@@ -1,0 +1,470 @@
+@import url('mixins.less');
+
+.theme(@backgroundColor: #fff, @box-border: #A18B8E, @title-color: #7D181E, @check-detail-bg: #E1BC73, @dark-bg: #7D181E, @light-bg: #E5BD6D, @dark-bg-color: #fff, @light-bg-color: #152f38, @list-border-color: #fff, @main-radio-bg: #E1BC73, ){
+  background-color: @backgroundColor;
+  &.full-page{
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+  }
+  &.container{
+    min-width: 1700px;
+    min-height: 860px;
+    width: 1920px;
+    height: 950px;
+    overflow: auto;
+    padding: 15px;
+  }
+
+  // 盒子
+  .box{
+    padding: @box-padding;
+    border: 1px solid @box-border;
+  }
+
+  /*========== 总体布局 ===========*/
+  .left-part, .middle-part, .right-part{
+    .fl();
+    height: 100%;
+  }
+  .left-part{
+    width: 30%;
+    padding-right: @part-padding;
+  }
+  .middle-part{
+    width: 45%;
+    padding-right: @part-padding;
+  }
+  .right-part{
+    width: 25%;
+  }
+
+  // 公共title
+  .my-title{
+    color: @title-color;
+    padding-bottom: @box-padding;
+    .fl();
+    width: 100%;
+    // 概况的项目联系
+    .project-contact{
+      .fr();
+    }
+    // 查看详情
+    .check-detail{
+      font-size: @small-font;
+      padding: 4px 10px;
+      color: #fff;  
+      border-radius: 20px; 
+      font-weight: normal;
+      .csp();
+      .bg(@check-detail-bg);
+      .fs(@check-detail-fs);
+      .fr();
+    }
+  }
+
+  /*======================
+          左边部分
+  ========================*/
+  .left-part{
+    .bold();
+    >.left-top{
+      height: 83%;
+    }
+    >.left-bottom{
+      height: 17%;
+      border-top: none;
+    }
+  }
+  // 左上标题
+  .left-top-header{
+    .fl();
+    width: 100%;
+  }
+  //左上除标题外样式
+  .left-top-content{
+    height: 100%;
+    padding-top: 25px;
+  }
+  // 左上部分高度占比
+  .left-top-1{height: 43%}
+  .left-top-2{height: 17%}
+  .left-top-3{height: 26%}
+  .left-top-4{height: 14%}
+  .left-top-1, .left-top-2, .left-top-3{border-bottom: none}
+
+  /*********** 概况列表 ***********/
+  .gaikuang-info{
+    width: 100%;
+    height: 100%;
+    .bold();
+    .clear();
+    ul{
+      width: 100% / 4;
+      &.prj-gaikuang-list{
+        width: 50%;
+      }
+      .fl();
+      height: 100%;
+      .bg(@light-bg); // 浅色背景
+      &:first-child{
+        .bg(@dark-bg); // 深色背景
+        color: @dark-bg-color; // 深色背景下的文字色
+        .bold();
+      }
+      &:not(:last-child){
+        border-right: 1px solid @list-border-color; // 内表格边框色
+      }
+      >li{
+        height: 100% / 10;
+        width: 100%;
+        .text-center();
+        &:not(:last-child){
+          border-bottom: 1px solid @list-border-color;
+        }
+        // 垂直居中构造
+        &:before{
+          content:"";
+          display:inline-block;
+          height:100%;
+          vertical-align:middle;
+        }
+        &:first-child{
+
+          .bg(@dark-bg); // 深色背景
+          color: @dark-bg-color; // 深色背景下的文字色
+          .bold();
+        }
+      }
+    }
+  }
+
+  /*********** 建筑物信息 ***********/
+  .building-info{
+    height: 100%;
+    .bold();
+    table{
+      .fl();
+      width: 100%;
+      height: 100%;
+      // .bg(@light-purple-title);
+      .bg(@light-bg); // 建筑物表格浅色背景色
+      tr{
+        height: 33%;
+        .text-center();
+        &:first-child{
+          .bg(@dark-bg); // 表格加深色
+          color: @dark-bg-color; // 深色背景下的标题色
+          .bold();
+        }
+        >td{
+          border: 1px solid @list-border-color;
+          vertical-align: middle;
+          width: 100% / 3;
+          &:first-child{
+            .text-center();
+            .bg(@dark-bg); // 表格加深色
+            color: @dark-bg-color; // 深色背景下的标题色
+            .bold();
+          }
+          // 客梯等
+          &.special{
+            .fs(0);
+            >em{
+              display: inline-block;
+              width: 100% / 3;
+              height: 100%;
+              .fs(@theme-font);
+              vertical-align: middle;
+              position: relative;
+              &:not(:last-child){
+                border-right: 1px solid #fff;
+              }
+              >span{
+                width: 100%;
+                .psc();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*************** 停车场 ***************/
+  .parking-info{
+    height: 100%;
+    table{
+      width: 100%;
+      height: 100%;
+      .bg(@light-bg);
+      tr{
+        &.special{
+          .bg(@dark-bg);
+          color: @dark-bg-color;
+          .bold();
+        }
+      }
+      td{
+        width: 20%;
+        border: 1px solid @list-border-color; // 表格边框色
+        vertical-align: middle;
+        .text-center();
+        &:first-child, &.special{
+          // .bg(@purple-title);
+          .bg(@dark-bg);
+          color: @dark-bg-color;
+          .bold();
+        }
+        &.special{
+          >span{
+            .fl();
+            width: 100% / 3;
+            height: 100%;
+            .v-align();
+            .text-center();
+            &:not(:last-child){
+              border-right: 1px solid #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /************** 经营状况 ***************/
+  .operation-condition{
+    height: 100%;
+    table{
+      width: 100%;
+      height: 100%;
+      .bg(@light-bg);
+      .text-center();
+      tr{
+        height: 50%;
+        width: 100%;
+        &:first-child{
+          .bg(@dark-bg);
+          color: @dark-bg-color; // 深色背景下的标题色
+          .bold();
+        }
+        td{
+          width: 100% / 3;
+          vertical-align: middle;
+          border: 1px solid @list-border-color;
+        }
+      }
+    }
+  }
+
+  /************** 管理费收费标准 *************/
+  .management-charge{
+    height: 100%;
+    .management-charge-container{
+      .tc();
+      height: 100%;
+      // padding-top: 30px; // 给表头预留高度
+    }
+    // 表头
+    .charge-standard-table-head{
+      .lh(30px);
+      width: 100%;
+      >li{
+        .bg(@dark-bg); // 深色背景
+        color: @dark-bg-color; // 深色背景字体色
+        height: 100%;
+        .tov(); // 文字溢出处理
+        .fl();
+        display: inline-block;
+        width: 20%;
+        &:not(:last-child){
+          border-right: 1px solid @list-border-color;
+        }
+      }
+    }
+    // 表体
+    .charge-standard-list{
+      width: 100%;
+      height: 100%;
+      height: calc(~'100% - 30px');
+      >li{
+        .lh(30px);
+        width: 100%;
+        .bg(@light-bg);
+        border-bottom: 1px solid @list-border-color;
+        .text-center();
+        >span{
+          .fl();
+          height: 100%;
+          .tov();
+          width: 20%;
+          &:before{
+            content:"";
+            display:inline-block;
+            height:100%;
+            vertical-align:middle;
+          }
+          &:not(:last-child){
+            border-right: 1px solid @list-border-color;
+          }
+        }
+      }
+    }
+  }
+
+  /*======================
+          中间部分
+  ========================*/
+  .middle-part{
+    >.middle-top{
+      height: 44%;
+    }
+    >.middle-bottom{
+      padding-top: @part-padding;
+      height: 56%;
+    }
+  }
+
+  /*========== 中上部分 ==========*/
+  // 区域选择部分
+  .middle-top-top{
+    .lh(@tab-control-height);
+    .fl();
+    padding: 0;
+    // border-bottom: none;
+    width: 100%;
+  }
+
+  // 项目选择部分
+  .middle-top-bottom{
+    padding-top: @tab-control-height; // 预留区域选择部分的高度
+    height: 100%;
+  }
+
+  /*=========== 中下部分 ==========*/
+  // tab-control
+  .middle-bottom-top{
+    .lh(@tab-control-height);
+    .fl();
+    border: 1px solid @box-border;
+    border-bottom: none;
+  }
+
+  // tab-controll-content
+  .middle-bottom-bottom{
+    border-top: none;
+    padding-top: @tab-control-height; // 预留区域选择部分的高度
+    height: 100%;
+    // tab内容容器高度
+    .tab-control-content{
+      height: 100%;
+      position: relative;
+      >li{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        .bg(#fff);
+      }
+    }
+  }
+
+  /*======================
+          右边部分
+  ========================*/
+  .chart{
+    width: 100%;
+    height: 100%;
+    padding-top: @part-padding;
+  }
+  
+  .right-top, .right-middle{
+    height: 35%;
+    padding-bottom: @part-padding + @tab-control-height - 8;
+    position: relative;
+    
+    .right-top-top, .right-middle-top{
+      height: 100%;
+      
+    }
+    
+    // 季度/月度/年度选择功能组
+    .right-top-bottom, .right-middle-bottom{
+      position: absolute;
+      bottom: @part-padding;
+      left: 0;
+      right: 0;
+      // elementUI radio-group样式设置
+      .is-active{
+        // radio激活时
+        .el-radio-button__inner{
+          .bg(@main-radio-bg);
+          border-color: @main-radio-bg;
+          -webkit-box-shadow: -1px 0 0 0 @main-radio-bg;
+          box-shadow: -1px 0 0 0 @main-radio-bg;
+        }
+      }
+      // radio默认
+      .el-radio-button__inner{
+        border-radius: 0;
+        border-top: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        .lh(40px);
+        .fs(@title-font);
+        .fl();
+        // border-color: @box-border;
+      }
+      // el-button
+      .el-button{
+        padding-top: 0;
+        padding-bottom: 0;
+        .lh(40px);
+        .fs(@title-font);.fr();
+        border-radius: 0;
+      }
+    }
+  }
+
+  // 右上
+  .right-top{
+    height: 70%;
+    .right-top-top{
+      padding-top: 0;
+      .right-top-chart{
+        height: 100%;
+        padding-top: 30px;
+      }
+      .right-chart{
+        height: 50%;
+        &:first-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  // 利润
+  .right-top-title{
+    .fl();
+    width: 100%;
+    .lh(30px);
+    .tc();
+    color: @title-color;
+    .fs(@title-font);
+    .bold();
+    border: 1px solid @box-border;
+    border-bottom: none;
+  }
+
+  .right-bottom{
+    height: 30%;
+    .staff-chart{
+      height: 100%;
+      padding-top: @th;
+    }
+  }
+}
