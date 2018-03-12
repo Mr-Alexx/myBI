@@ -48,13 +48,14 @@ export default {
     }
   },
   mounted () {
-    this.$.$echarts('income', this.$.options.singleBar)
-    this.$.$echarts('outpay', this.$.options.singleBar)
+    // this.$.$echarts('income', this.$.options.singleBar)
+    // this.$.$echarts('outpay', this.$.options.singleBar)
+    this.$.changeTimeType('月度')
   },
   methods: {
     changeTime () {
-      console.log(this.state)
-      // return this.$.changeTimeType(this.mainTimeType)
+      // console.log(this.state)
+      return this.$.changeTimeType(this.time)
     },
 
   }

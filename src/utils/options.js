@@ -17,7 +17,7 @@ const options = {
       axisPointer: {            // 坐标轴指示器，坐标轴触发有效
         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
       },
-      formatter: '{b} : {c}人',
+      formatter: '{b} : {c} 万元',
     },
     grid: { // 控制标整体距离
       top: 40,

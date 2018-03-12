@@ -107,9 +107,19 @@ const state = {
       startDate: '',
       endDate: '',
       title: ''
-    }
+    },
+    startDate: '',
+    endDate: '',
+    Time: '', // xx年xx月 / xx年 / xx年xx季度
   },
   mainTimeType: '月度', // 首页的支出/收入 时间类型
+  themes: { // 主题
+    zhuguangRed: {
+      singleBar: ['#801620'],
+      doubleBar: ['#E7BB70', '#801620']
+    }
+  },
+  currentTheme: 'zhuguangRed'
 }
 
 export default state

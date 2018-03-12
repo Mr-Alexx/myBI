@@ -32,7 +32,7 @@ Vue.use(myTitle)
 Vue.use($com)
 
 /* eslint-disable no-new */
-new Vue({
+export default new Vue({
   el: '#app',
   router,
   store, // 全局注入store
