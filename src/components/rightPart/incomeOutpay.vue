@@ -1,11 +1,18 @@
 <template>
   <section class="right-top">
     <section class="right-top-top">
-      <header class="right-top-title">利润 : 1000 万元</header>
+      <header class="right-top-title"
+        v-text="'利润: ' + state.currentData.profit">
+
+      </header>
       
       <section class="right-top-chart">
         <box class="right-chart">
-          <my-title title="收入分析" hasMore=true></my-title>
+          <my-title 
+            :title="'收入分析(总收入: ' + state.currentData.income.total + ')'" 
+            hasMore=true>
+
+          </my-title>
 
           <section class="chart">
             <section class="full-container" id="income"></section>
@@ -13,7 +20,10 @@
         </box>
 
         <box class="right-chart">
-          <my-title title="支出分析" hasMore=true></my-title>
+          <my-title 
+            :title="'支出分析(总支出: ' + state.currentData.outpay.total + ')'" 
+            hasMore=true>
+          </my-title>
 
           <section class="chart">
             <section class="full-container" id="outpay"></section>
@@ -48,13 +58,10 @@ export default {
     }
   },
   mounted () {
-    // this.$.$echarts('income', this.$.options.singleBar)
-    // this.$.$echarts('outpay', this.$.options.singleBar)
     this.$.changeTimeType('月度')
   },
   methods: {
     changeTime () {
-      console.log(this.time)
       return this.$.changeTimeType(this.time)
     },
 

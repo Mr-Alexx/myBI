@@ -98,15 +98,18 @@ const state = {
   managementCharge: [], // 管理费
   currentData: { // 用于保存当前共用的数据
     ajaxId: '',
+    profit: 0, // 利润
     income: {
       startDate: '',
       endDate: '',
-      title: ''
+      title: '',
+      total: 0 // 总收入
     },
     outpay: {
       startDate: '',
       endDate: '',
-      title: ''
+      title: '',
+      total: 0 // 总支出
     },
     startDate: '',
     endDate: '',

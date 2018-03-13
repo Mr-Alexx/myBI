@@ -52,8 +52,9 @@ const $com = {
    * @param {string} type 'income' / 'outpay'
    */
   changeTimeType (type) {
-    // return console.log(type)
-    let _this = this
+    let 
+      _this = this,
+      curData = store.state.currentData
 
     // 绘制/更新首页收/支柱状图
     api.getMainIncomeOutpay({
@@ -62,6 +63,10 @@ const $com = {
       timeType: type,
       projectType: ''
     }, (income, outpay) => {
+      // 保存收入/支出总数， 利润
+      curData.income.total = _this.formatFilter(_this.toTenThousand(income.TotalFact), '万元')
+      curData.outpay.total = _this.formatFilter(_this.toTenThousand(outpay.TotalFact), '万元')
+      curData.profit = _this.formatFilter(_this.toTenThousand(income.TotalFact - outpay.TotalFact), '万元')
       // 如果已经存在两图，则只需要更新
       if (_this.charts.income && _this.charts.outpay) {
         _this.drawSingleBar('income', income, true)
@@ -70,12 +75,14 @@ const $com = {
         _this.drawSingleBar('income', income)
         _this.drawSingleBar('outpay', outpay)
       }
-      // log(income, outpay)
     })
   },
 
   /*
    * @description 收/支柱状图
+   * @params {String} id echarts图对应的元素id
+   * @params {Object} data 收入/支出数据
+   * @params {Bollean} isUpdate 若已存在该图表，则传入true，直接更新数据
    */
   drawSingleBar (id, data, isUpdate) {
     let 
@@ -108,15 +115,6 @@ const $com = {
     }
   },
 
-  /*
-   * @description 更新收/支柱状图
-   */
-  updateSingleBar (id, data) {
-    let _this = this
-    let opt = this.charts[id].getOption() // 获取图表option
-    log(opt)
-    opt.title.text = data.Time
-  },
 
   // 转化为万元
   toTenThousand: function (value, type) {
