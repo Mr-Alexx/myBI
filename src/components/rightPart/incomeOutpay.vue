@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     changeTime () {
-      // console.log(this.state)
+      console.log(this.time)
       return this.$.changeTimeType(this.time)
     },
 

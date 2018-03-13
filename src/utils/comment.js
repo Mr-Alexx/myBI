@@ -64,36 +64,58 @@ const $com = {
     }, (income, outpay) => {
       // 如果已经存在两图，则只需要更新
       if (_this.charts.income && _this.charts.outpay) {
-
+        _this.drawSingleBar('income', income, true)
+        _this.drawSingleBar('outpay', outpay, true)
       } else {
-        _this.drawMoneyBar('income', income)
-        _this.drawMoneyBar('outpay', outpay)
-        log(store.state)
+        _this.drawSingleBar('income', income)
+        _this.drawSingleBar('outpay', outpay)
       }
+      // log(income, outpay)
     })
   },
 
   /*
    * @description 收/支柱状图
    */
-  drawMoneyBar (id, data) {
+  drawSingleBar (id, data, isUpdate) {
     let 
-      seriesData = [],
-      xAxis = [],
-      opt = this.options.singleBar,
-      _this = this
+      seriesData = [], // 柱子高度数据
+      xAxis = [], // x轴坐标数据
+      opt = isUpdate? this.charts[id].getOption() : this.options.singleBar, //根据是否更新获取所需的option
+      _this = this,
+      theme = store.state.currentTheme // 当前主题
 
+    // 构造x轴和柱子高度数据
     data.Data.forEach((v, i) => {
       seriesData.push(_this.toTenThousand(v.Value))
       xAxis.push(v.Name)
     })
 
-    opt.title.text = data.Time // title
-    opt.xAxis[0].data = xAxis // 横坐标
+    opt.title[0].text = data.Time // title
     opt.series[0].data = seriesData // 柱子数据
-    opt.series[0].name = id === 'income'? '收入分析' : '支出分析'
 
-    this.charts[id] = this.$echarts(id, opt) // 绘制柱状图
+    // 不是更新才更改的数据,并且绘制图表
+    // 否则只更新图表
+    if (!isUpdate) {
+      opt.title[0].textStyle.color = store.state.themes[theme].singleBar // 标题色
+      opt.color = store.state.themes[theme].singleBar // 柱子色
+      opt.xAxis[0].data = xAxis // 横坐标
+      opt.series[0].name = id === 'income'? '收入分析' : '支出分析'
+      this.charts[id] = this.$echarts(id, opt) // 绘制柱状图
+      
+    } else {
+      this.charts[id].setOption(opt, true)
+    }
+  },
+
+  /*
+   * @description 更新收/支柱状图
+   */
+  updateSingleBar (id, data) {
+    let _this = this
+    let opt = this.charts[id].getOption() // 获取图表option
+    log(opt)
+    opt.title.text = data.Time
   },
 
   // 转化为万元

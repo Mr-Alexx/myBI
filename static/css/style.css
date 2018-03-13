@@ -750,7 +750,7 @@ table {
 }
 .zhuGuangRed .right-top .right-top-top .right-top-chart {
   height: 100%;
-  padding-top: 30px;
+  padding-top: 40px;
 }
 .zhuGuangRed .right-top .right-top-top .right-chart {
   height: 50%;
@@ -761,8 +761,8 @@ table {
 .zhuGuangRed .right-top-title {
   float: left;
   width: 100%;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   color: #7D181E;
   font-size: 1.14285714rem;

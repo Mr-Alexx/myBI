@@ -1,31 +1,41 @@
+// 公共配置
+const config = {
+  title: [{
+    text: '',
+    show: true,
+    textStyle: {
+      fontSize: 16,
+      color: '#000',
+      align: 'center'
+    },
+    left: 'center'
+  }],
+  // barTooltip
+  barTooltip: {
+    trigger: 'axis',
+    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+      type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+    },
+    formatter: '{b} : {c} 万元'
+  },
+  // 柱状图网格距离
+  barGrid: {
+    top: 40,
+    bottom: 20,
+    left: 20,
+    right: 20,
+    containLabel: true
+  }
+}
+
 // 定义绘制echarts图表的基数配置
 const options = {
+  // 单柱子
   singleBar: {
     color: '#801620',//commenStyle.commentBar.color,
-    title: {
-      text: '',
-      show: true,
-      textStyle: {
-        fontSize: 16,
-        color: '#000',
-        align: 'center'
-      },
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-      },
-      formatter: '{b} : {c} 万元',
-    },
-    grid: { // 控制标整体距离
-      top: 40,
-      bottom: 20,
-      left: 20,
-      right: 20,
-      containLabel: true
-    },
+    title: config.title,
+    tooltip: config.barTooltip,
+    grid: config.barGrid,
     calculable: true,
     xAxis: [
       {
@@ -61,6 +71,12 @@ const options = {
       }
     ]
   },
+
+  // 双柱子
+  doubleBar: {
+
+  },
+
   formatFilter (number, unit, places, thousand, decimal) {
     // number为空 返回'/'
     if (number == null) return '/'
