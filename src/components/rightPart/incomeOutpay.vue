@@ -1,9 +1,8 @@
 <template>
   <section class="right-top">
     <section class="right-top-top">
-      <header class="right-top-title"
+      <header :class="['right-top-title', {'danger': state.currentData.profit < 0}]"
         v-text="'利润: ' + state.currentData.profit">
-
       </header>
       
       <section class="right-top-chart">
@@ -54,7 +53,7 @@ export default {
   data () {
     return {
       state: this.$store.state,
-      time: this.$store.state.mainTimeType
+      time: '月度'
     }
   },
   mounted () {

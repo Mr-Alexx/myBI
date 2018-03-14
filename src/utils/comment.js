@@ -58,8 +58,8 @@ const $com = {
 
     // 绘制/更新首页收/支柱状图
     api.getMainIncomeOutpay({
-      id: 'all',
-      areaType: 'area',
+      id: curData.ajaxId,
+      areaType: curData.areaType,
       timeType: type,
       projectType: ''
     }, (income, outpay) => {
@@ -115,6 +115,15 @@ const $com = {
     }
   },
 
+  /*
+   * @description 双柱子图(人员结构)
+   * @params {String} id echarts图对应的元素id
+   * @params {Object} data 数据
+   * @params {Bollean} isUpdate 若已存在该图表，则传入true，直接更新数据
+   */
+  drawDoubleBar (id, data, isUpdate) {
+
+  },
 
   // 转化为万元
   toTenThousand: function (value, type) {

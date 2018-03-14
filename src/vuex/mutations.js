@@ -1,12 +1,13 @@
+// 相当于事件注册
 const mutations = {
-  getTheme (currentTheme) {
+  GET_THEME (state) {
     let theme = localStorage.getItem('theme')
     // localstorage中不存在theme就不做任何事
     if (!theme) return
-    currentTheme = theme
+    state.currentTheme = theme
   },
-  changeTheme (currentTheme, theme) {
-    currentTheme = theme
+  CHANGE_THEME (state, theme) {
+    state.currentTheme = theme
     localStorage.setItem('theme', theme)
   }
 }

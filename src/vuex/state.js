@@ -97,8 +97,10 @@ const state = {
   ],
   managementCharge: [], // 管理费
   currentData: { // 用于保存当前共用的数据
-    ajaxId: '',
+    ajaxId: 'all',
     profit: 0, // 利润
+    areaType: 'area', // 是区域还是项目
+    projectType: '', // 项目类型: 住宅/商写/前期
     income: {
       startDate: '',
       endDate: '',
