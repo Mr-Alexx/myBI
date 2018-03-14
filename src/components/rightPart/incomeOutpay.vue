@@ -1,14 +1,14 @@
 <template>
   <section class="right-top">
     <section class="right-top-top">
-      <header :class="['right-top-title', {'danger': state.currentData.profit < 0}]"
-        v-text="'利润: ' + state.currentData.profit">
+      <header :class="['right-top-title', {'danger': $store.state.currentData.profit < 0}]"
+        v-text="'利润: ' + $store.state.currentData.profit">
       </header>
       
       <section class="right-top-chart">
         <box class="right-chart">
           <my-title 
-            :title="'收入分析(总收入: ' + state.currentData.income.total + ')'" 
+            :title="'收入分析(总收入: ' + $store.state.currentData.totalIncome + ')'" 
             hasMore=true>
 
           </my-title>
@@ -20,7 +20,7 @@
 
         <box class="right-chart">
           <my-title 
-            :title="'支出分析(总支出: ' + state.currentData.outpay.total + ')'" 
+            :title="'支出分析(总支出: ' + $store.state.currentData.totalOutpay + ')'" 
             hasMore=true>
           </my-title>
 
@@ -32,7 +32,7 @@
     </section>
 
     <footer class="right-top-bottom">
-      <el-radio-group v-model="time" size="mediumn" @change="changeTime">
+      <el-radio-group v-model="$store.state.currentData.mainTimeType" size="mediumn" @change="changeIncomeOutpay">
         <el-radio-button label="月度"></el-radio-button>
         <el-radio-button label="季度"></el-radio-button>
         <el-radio-button label="年度"></el-radio-button>
@@ -47,23 +47,25 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'incomeOutpay',
   data () {
     return {
-      state: this.$store.state,
-      time: '月度'
     }
   },
   mounted () {
-    this.$.changeTimeType('月度')
+    // this.$.changeTimeType()
+    this.changeIncomeOutpay()
   },
   methods: {
     changeTime () {
-      return this.$.changeTimeType(this.time)
+      return this.changeTimeType()
     },
-
+    ...mapActions([
+      'changeIncomeOutpay'
+    ])
   }
 }
 </script>

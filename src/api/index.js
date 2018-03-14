@@ -40,6 +40,12 @@ const api = {
       }))
   },
 
+  // 获取所有项目信息
+  getAllItems (callback) {},
+
+  // 获取所有区域信息
+  getAllAreas () {},
+
   getData (url, postData) {
     return axios.post(url, postData)
   },

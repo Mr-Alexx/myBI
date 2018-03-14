@@ -101,30 +101,33 @@ const state = {
     profit: 0, // 利润
     areaType: 'area', // 是区域还是项目
     projectType: '', // 项目类型: 住宅/商写/前期
-    income: {
-      startDate: '',
-      endDate: '',
-      title: '',
-      total: 0 // 总收入
-    },
-    outpay: {
-      startDate: '',
-      endDate: '',
-      title: '',
-      total: 0 // 总支出
-    },
     startDate: '',
     endDate: '',
     Time: '', // xx年xx月 / xx年 / xx年xx季度
+    mainTimeType: '月度', // 首页的支出/收入 时间类型
+    totalIncome: 0, // 首页总收入
+    totalOutpay: 0, // 首页总支出
   },
-  mainTimeType: '月度', // 首页的支出/收入 时间类型
+  income: {
+    startDate: '',
+    endDate: '',
+    title: '',
+    total: 0 // 总收入
+  },
+  outpay: {
+    startDate: '',
+    endDate: '',
+    title: '',
+    total: 0 // 总支出
+  },
   themes: { // 主题
     zhuguangRed: {
       singleBar: ['#801620'],
       doubleBar: ['#E7BB70', '#801620']
     }
   },
-  currentTheme: 'zhuguangRed'
+  currentTheme: 'zhuguangRed',
+  charts: {}
 }
 
 export default state

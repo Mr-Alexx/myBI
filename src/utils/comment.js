@@ -60,12 +60,12 @@ const $com = {
     api.getMainIncomeOutpay({
       id: curData.ajaxId,
       areaType: curData.areaType,
-      timeType: type,
-      projectType: ''
+      timeType: curData.mainTimeType,
+      projectType: curData.projectType
     }, (income, outpay) => {
       // 保存收入/支出总数， 利润
-      curData.income.total = _this.formatFilter(_this.toTenThousand(income.TotalFact), '万元')
-      curData.outpay.total = _this.formatFilter(_this.toTenThousand(outpay.TotalFact), '万元')
+      curData.totalIncome = _this.formatFilter(_this.toTenThousand(income.TotalFact), '万元')
+      curData.totalOutpay = _this.formatFilter(_this.toTenThousand(outpay.TotalFact), '万元')
       curData.profit = _this.formatFilter(_this.toTenThousand(income.TotalFact - outpay.TotalFact), '万元')
       // 如果已经存在两图，则只需要更新
       if (_this.charts.income && _this.charts.outpay) {
